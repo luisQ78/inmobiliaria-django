@@ -1,0 +1,32 @@
+{% extends 'propiedades/base.html' %}
+{% block titulo %}{{ propiedad.titulo }}{% endblock %}
+{% block contenido %}
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="mb-2">
+      <span class="badge bg-primary">{{ propiedad.get_tipo_display }}</span>
+      <span class="badge bg-secondary">{{ propiedad.get_operacion_display }}</span>
+      <span class="badge {% if propiedad.estado == 'DISPONIBLE' %}bg-success{% else %}bg-warning text-dark{% endif %}">{{ propiedad.get_estado_display }}</span>
+    </div>
+    <h2>{{ propiedad.titulo }}</h2>
+    <p class="text-muted">📍 {{ propiedad.direccion }}, {{ propiedad.ciudad }}</p>
+    <p class="precio">$ {{ propiedad.precio|floatformat:0 }}</p>
+    <hr>
+    <div class="row">
+      <div class="col-6 col-md-3"><strong>Habitaciones</strong><br>{{ propiedad.habitaciones }}</div>
+      <div class="col-6 col-md-3"><strong>Baños</strong><br>{{ propiedad.banos }}</div>
+      <div class="col-6 col-md-3"><strong>Área</strong><br>{{ propiedad.area_m2|floatformat:2 }} m²</div>
+      <div class="col-6 col-md-3"><strong>Año</strong><br>{{ propiedad.anio_construccion }}</div>
+    </div>
+    <hr>
+    <p>{{ propiedad.descripcion|default:"Sin descripción." }}</p>
+    <p class="mb-0"><strong>Contacto:</strong> {{ propiedad.contacto_nombre }} · <a href="mailto:{{ propiedad.contacto_correo }}">{{ propiedad.contacto_correo }}</a></p>
+    <small class="text-muted">Registrada el {{ propiedad.fecha_registro|date:"d/m/Y H:i" }}</small>
+  </div>
+  <div class="card-footer bg-white d-flex gap-2">
+    <a href="{% url 'propiedades:lista' %}" class="btn btn-outline-secondary">← Volver</a>
+    <a href="{% url 'propiedades:editar' propiedad.pk %}" class="btn btn-primary ms-auto">Editar</a>
+    <a href="{% url 'propiedades:eliminar' propiedad.pk %}" class="btn btn-danger">Eliminar</a>
+  </div>
+</div>
+{% endblock %}

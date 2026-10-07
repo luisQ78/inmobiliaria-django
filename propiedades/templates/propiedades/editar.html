@@ -1,0 +1,17 @@
+{% extends 'propiedades/base.html' %}
+{% block titulo %}Editar propiedad{% endblock %}
+{% block contenido %}
+<div class="card shadow-sm">
+  <div class="card-header bg-primary text-white"><h4 class="mb-0">Editar: {{ propiedad.titulo }}</h4></div>
+  <div class="card-body">
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {% include 'propiedades/_campos.html' %}
+      <div class="mt-4 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Actualizar propiedad</button>
+        <a href="{% url 'propiedades:detalle' propiedad.pk %}" class="btn btn-outline-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

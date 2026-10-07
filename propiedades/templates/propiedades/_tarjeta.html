@@ -1,0 +1,20 @@
+<div class="col-md-6 col-lg-4">
+  <div class="card card-propiedad h-100 shadow-sm">
+    <div class="card-body">
+      <div class="mb-2">
+        <span class="badge bg-primary">{{ p.get_tipo_display }}</span>
+        <span class="badge bg-secondary">{{ p.get_operacion_display }}</span>
+        <span class="badge {% if p.estado == 'DISPONIBLE' %}bg-success{% else %}bg-warning text-dark{% endif %}">{{ p.get_estado_display }}</span>
+      </div>
+      <h5 class="card-title">{{ p.titulo }}</h5>
+      <p class="text-muted mb-2">📍 {{ p.direccion }}, {{ p.ciudad }}</p>
+      <p class="precio mb-2">$ {{ p.precio|floatformat:0 }}</p>
+      <p class="small mb-0">🛏 {{ p.habitaciones }} · 🛁 {{ p.banos }} · 📐 {{ p.area_m2|floatformat:0 }} m²</p>
+    </div>
+    <div class="card-footer bg-white d-flex gap-2">
+      <a href="{% url 'propiedades:detalle' p.pk %}" class="btn btn-sm btn-outline-primary">Ver</a>
+      <a href="{% url 'propiedades:editar' p.pk %}" class="btn btn-sm btn-outline-secondary">Editar</a>
+      <a href="{% url 'propiedades:eliminar' p.pk %}" class="btn btn-sm btn-outline-danger ms-auto">Eliminar</a>
+    </div>
+  </div>
+</div>

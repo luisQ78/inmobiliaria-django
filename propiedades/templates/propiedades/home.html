@@ -1,0 +1,32 @@
+{% extends 'propiedades/base.html' %}
+{% block titulo %}Inicio · Inmobiliaria{% endblock %}
+{% block contenido %}
+<div class="hero p-5 mb-4">
+  <h1 class="display-5 fw-bold">Encuentra y administra propiedades</h1>
+  <p class="lead">Registra, consulta, modifica y elimina propiedades en venta o alquiler.</p>
+  <a href="{% url 'propiedades:lista' %}" class="btn btn-light btn-lg me-2">Ver propiedades</a>
+  <a href="{% url 'propiedades:crear' %}" class="btn btn-outline-light btn-lg">Registrar propiedad</a>
+</div>
+
+<div class="row text-center mb-4">
+  <div class="col-md-6 mb-3">
+    <div class="card shadow-sm"><div class="card-body">
+      <div class="display-6">{{ total }}</div><div class="text-muted">Propiedades registradas</div>
+    </div></div>
+  </div>
+  <div class="col-md-6 mb-3">
+    <div class="card shadow-sm"><div class="card-body">
+      <div class="display-6">{{ disponibles }}</div><div class="text-muted">Disponibles</div>
+    </div></div>
+  </div>
+</div>
+
+<h4 class="mb-3">Últimas propiedades</h4>
+<div class="row g-3">
+  {% for p in recientes %}
+    {% include 'propiedades/_tarjeta.html' %}
+  {% empty %}
+    <p class="text-muted">Aún no hay propiedades. <a href="{% url 'propiedades:crear' %}">Registra la primera</a>.</p>
+  {% endfor %}
+</div>
+{% endblock %}

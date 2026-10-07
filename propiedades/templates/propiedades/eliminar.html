@@ -1,0 +1,16 @@
+{% extends 'propiedades/base.html' %}
+{% block titulo %}Eliminar propiedad{% endblock %}
+{% block contenido %}
+<div class="card border-danger shadow-sm">
+  <div class="card-header bg-danger text-white"><h4 class="mb-0">Confirmar eliminación</h4></div>
+  <div class="card-body">
+    <p>¿Seguro que deseas eliminar la propiedad <strong>{{ propiedad.titulo }}</strong> ({{ propiedad.direccion }}, {{ propiedad.ciudad }})?</p>
+    <p class="text-muted">Esta acción no se puede deshacer.</p>
+    <form method="post" class="d-flex gap-2">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+      <a href="{% url 'propiedades:lista' %}" class="btn btn-outline-secondary">Cancelar</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

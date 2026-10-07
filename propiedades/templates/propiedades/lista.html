@@ -1,0 +1,41 @@
+{% extends 'propiedades/base.html' %}
+{% block titulo %}Propiedades · Inmobiliaria{% endblock %}
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="mb-0">Listado de propiedades</h2>
+  <a href="{% url 'propiedades:crear' %}" class="btn btn-primary">+ Nueva propiedad</a>
+</div>
+
+<form method="get" class="row g-2 mb-4">
+  <div class="col-md-5">
+    <input type="text" name="q" value="{{ q }}" class="form-control" placeholder="Buscar por título, ciudad o dirección">
+  </div>
+  <div class="col-md-3">
+    <select name="tipo" class="form-select">
+      <option value="">Todos los tipos</option>
+      {% for valor, nombre in tipos %}
+        <option value="{{ valor }}" {% if tipo == valor %}selected{% endif %}>{{ nombre }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-2">
+    <select name="operacion" class="form-select">
+      <option value="">Venta y alquiler</option>
+      {% for valor, nombre in operaciones %}
+        <option value="{{ valor }}" {% if operacion == valor %}selected{% endif %}>{{ nombre }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-2 d-grid">
+    <button class="btn btn-dark" type="submit">Filtrar</button>
+  </div>
+</form>
+
+<div class="row g-3">
+  {% for p in propiedades %}
+    {% include 'propiedades/_tarjeta.html' %}
+  {% empty %}
+    <div class="col-12"><div class="alert alert-info">No se encontraron propiedades.</div></div>
+  {% endfor %}
+</div>
+{% endblock %}

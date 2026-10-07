@@ -1,0 +1,7 @@
+body { background: #f5f7fa; }
+.navbar-brand { font-weight: 700; letter-spacing: .5px; }
+.hero { background: linear-gradient(135deg, #1f3c5a, #2f6f9f); color: #fff; border-radius: 1rem; }
+.card-propiedad { transition: transform .15s ease, box-shadow .15s ease; }
+.card-propiedad:hover { transform: translateY(-3px); box-shadow: 0 .5rem 1rem rgba(0,0,0,.12); }
+.precio { font-size: 1.25rem; font-weight: 700; color: #1f3c5a; }
+footer { color: #6c757d; }
